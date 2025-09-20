@@ -4,19 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
-        <h2>Weather App</h2>
-        <input type="text" id="city" placeholder="Enter name of city">
-        <button class="btn" onclick="getWeather()">Show Weather</button>
+<body class="flex justify-center items-center min-h-screen bg-gray-300">
+    <div class="flex flex-col items-center">
+        <div class="bg-white w-[500px] px-5 pt-5 pb-5 rounded-lg shadow-md">
+            <h2 class="text-center text-[35px] text-gray-700">Weather App</h2>
+            <div class="flex justify-center items-center gap-3">
+                <input type="text" id="city" placeholder="Enter name of city"
+                class="w-2/3 mt-5 p-2.5 border border-gray-300 rounded-md">
+                <button class="mt-5 px-3 py-2.5 bg-gray-300 rounded-md text-gray-700 text-[15px]
+                hover:bg-gray-400 transition" onclick="getWeather()">Show Weather</button>
+            </div>
+            <div class="hidden mx-2 mt-3 bg-red-200 text-red-600 p-2.5 rounded-md" 
+            id="alertArea">
+                <span id="alertText">Please enter a city name!</span>
+            </div>
+        </div>
 
-        <div class="weather-info" id="weatherInfo">
+        <div class="hidden mt-5 bg-white w-[500px] p-5 rounded-lg shadow-md" id="weatherInfo">
             <!-- Weather info wuthh appear here -->
-             <div class="alertArea" id="alertArea">
-                <span id="alertText"></span>
-             </div>
+            <p class="text-[20px]">Feels like: 30°C</p>
+            
+            
         </div>
     </div>
 

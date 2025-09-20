@@ -41,16 +41,27 @@ async function getWeather(params) {
 }
 
 function displayWeather(data) {
-    let {name, weather, timezone, main} = data;
+    let {name, weather, main} = data;
     let weatherInfo = document.getElementById("weatherInfo");
 
     console.log(data);
-    
+
+    weatherInfo.classList.remove("hidden");
+    let weatherDescription = weather[0].description;
+    weatherDescription = weatherDescription.charAt(0).toUpperCase() + weatherDescription.slice(1);
+
     weatherInfo.innerHTML = `
-     <div>
-        <h3>Location: ${name}</h3>
-        <p>Timezone: ${timezone}</p>
-        <p>Current Weather: ${weather[0].description}</p>
-        <p>Temperature: ${(main.temp - 273.15).toFixed(2)} °C</p>
-    </div>`;
+     <div class="flex items-center justify-between p-4">
+        <div>
+            <h3 class="text-[25px]">${name}</h3>
+            <p class="text-[20px]">${weatherDescription}</p> 
+            <p class="text-[50px]">${(main.temp - 273.15).toFixed(1)}°C</p>
+            <p class="text-[18px]">Feels like ${(main.feels_like - 273.15).toFixed(1)}°C</p>
+            <p class="text-[18px]">Humidity: ${main.humidity}%</p>
+        </div>
+        <div class="bg-gray-50 rounded-md border border-gray-100 scale-120 flex-shrink-0">
+            <img src="https://openweathermap.org/img/wn/${weather[0].icon}@2x.png" 
+            onerror="this.src='./img/default.jpg'" class="w-24 h-24" alt="weather icon">
+        </div>
+    </div> `;
 }
